@@ -35,3 +35,7 @@ core_update_level: true
 httpd_port: 80
 ntpserver: mx.pool.ntp.org
 repository: https://github.com/bennojoy/mywebapp.git
+mysqlservice: mysqld
+dbuser: myuser
+dbname: mydb
+upassword: redhat
