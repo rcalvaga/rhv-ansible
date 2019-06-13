@@ -1,0 +1,8 @@
+---
+- name: Install a DB Server on RHEL
+  hosts: all
+
+  roles:
+    - common
+    - common_lamp
+    - db
