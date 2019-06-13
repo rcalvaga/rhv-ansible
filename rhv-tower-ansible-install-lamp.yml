@@ -1,0 +1,9 @@
+---
+- name: Install a LAMP Server on RHEL
+  hosts: all
+
+  roles:
+    - common
+    - common_lamp
+    - db
+    - web
