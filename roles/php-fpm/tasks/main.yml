@@ -1,0 +1,25 @@
+---
+- name: Install php-fpm and deps
+  yum: name={{ item }} state=present
+  with_items:
+    - php-5.4.45-13.el7.remi
+    - php-common-5.4.45-13.el7.remi
+    - php-imap-5.4.45-13.el7.remi
+    - php-intl-5.4.45-13.el7.remi
+    - php-fpm-5.4.45-13.el7.remi
+    - php-enchant-5.4.45-13.el7.remi
+    - php-IDNA_Convert
+    - php-mbstring-5.4.45-13.el7.remi
+    - php-mysql-5.4.45-13.el7.remi
+    - php-PHPMailer
+    - php-process-5.4.45-13.el7.remi
+    - php-simplepie
+    - php-xml-5.4.45-13.el7.remi
+
+- name: Disable default pool
+  command: mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.disabled creates=/etc/php-fpm.d/www.disabled
+  notify: restart php-fpm
+
+- name: Copy php-fpm configuration
+  template: src=wordpress.conf dest=/etc/php-fpm.d/
+  notify: restart php-fpm
