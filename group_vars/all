@@ -10,6 +10,9 @@ wp_sha256sum: c1856cf969b1e73025ba2c681491908c3a4a6c5a2333f4531bf9bfb90f634380
 # MySQL settings
 mysqlservice: mysqld
 mysql_port: 3306
+dbuser: myuser
+dbname: mydb
+upassword: redhat
 
 # These are the WordPress database settings
 wp_db_name: wordpress
@@ -31,11 +34,7 @@ auto_up_disable: false
 # minor = Minor updates are enabled, development, and major updates are disabled
 core_update_level: true
 
-# Variables related to LAMP Server
+# Variables related to LAMP Web Server
 httpd_port: 80
 ntpserver: mx.pool.ntp.org
 repository: https://github.com/bennojoy/mywebapp.git
-mysqlservice: mysqld
-dbuser: myuser
-dbname: mydb
-upassword: redhat
