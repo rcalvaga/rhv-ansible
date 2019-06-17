@@ -1,4 +1,27 @@
 ---
+- name: Refresh CloudForms VMs
+  connection: local
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Refresh CloudForms VM
+      uri:
+        url: "{{ cloudforms.href }}"
+        method: POST
+        user: "{{ cf_user }}"
+        password: "{{ cf_pw }}"
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+        HEADER_Content-Type: 'application/json'
+        HEADER_Accept: 'application/json'
+        body: >
+          {
+             "action" : "refresh"
+          }
+      delegate_to: localhost
+
+
 - name: Install a LAMP Server on RHEL
   hosts: all
 
