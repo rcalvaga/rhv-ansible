@@ -1,3 +1,22 @@
+- name: Refresh CloudForms VMs
+  connection: local
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Refresh CloudForms VM
+      uri:
+        url: "{{ cloudforms.href }}"
+        method: POST
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+        HEADER_Content-Type: 'application/json'
+        HEADER_Accept: 'application/json'
+        body: >
+          {
+             "action" : "refresh"
+          }
+
 - name: Install Ticketmonster App
   hosts: all
   
