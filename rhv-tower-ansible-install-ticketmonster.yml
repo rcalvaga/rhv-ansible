@@ -19,6 +19,9 @@
              "action" : "refresh"
           }
       delegate_to: localhost
+      until: ansible_ssh_host is defined
+      retries: 10
+      delay: 10
 
 - name: Install Ticketmonster App
   hosts: all
