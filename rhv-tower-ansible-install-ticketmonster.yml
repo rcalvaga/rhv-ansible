@@ -1,6 +1,6 @@
 - name: Refresh CloudForms VMs
   connection: local
-  hosts: localhost
+  hosts: all
   gather_facts: no
   tasks:
     - name: Refresh CloudForms VM
@@ -16,6 +16,7 @@
           {
              "action" : "refresh"
           }
+      delegate_to: localhost
 
 - name: Install Ticketmonster App
   hosts: all
