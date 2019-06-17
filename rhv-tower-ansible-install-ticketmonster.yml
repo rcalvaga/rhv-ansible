@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
   - name: Get Info and Refresh a CloudForms VM
-    block
+    block:
     - name: Get Info CloudForms VM
       uri:
         url: "{{ cloudforms.href }}?expand=software&attributes=ipaddresses"
@@ -45,6 +45,8 @@
           }
       delegate_to: localhost
     until: ipaddress is defined
+    retries: 10
+    delay: 10
 
 - name: Install Ticketmonster App
   hosts: all
