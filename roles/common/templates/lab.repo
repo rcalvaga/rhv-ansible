@@ -1,5 +1,5 @@
 [rhel-7]
 name=Red Hat Enterprise Linux 7
-baseurl=http://192.168.100.100/repos/
+baseurl=http://10.15.39.100/repos/
 enabled=1
 gpgcheck=0
