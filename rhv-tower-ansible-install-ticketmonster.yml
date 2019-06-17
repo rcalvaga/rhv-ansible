@@ -3,6 +3,31 @@
   hosts: all
   gather_facts: no
   tasks:
+  - name: Get Info and Refresh a CloudForms VM
+    block
+    - name: Get Info CloudForms VM
+      uri:
+        url: "{{ cloudforms.href }}?expand=software&attributes=ipaddresses"
+        method: GET
+        user: "{{ cf_user }}"
+        password: "{{ cf_pw }}"
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+        HEADER_Content-Type: 'application/json'
+        HEADER_Accept: 'application/json'
+        body: >
+          {
+             "action" : "refresh"
+          }
+        body_format: json
+      register: vm
+      delegate_to: localhost
+      
+    - name: Set Fact ipaddress
+      set_fact:
+        ipaddress: "{{ vm.json.ipaddresses[0] }}"
+        
     - name: Refresh CloudForms VM
       uri:
         url: "{{ cloudforms.href }}"
@@ -19,6 +44,7 @@
              "action" : "refresh"
           }
       delegate_to: localhost
+    until: ipaddress is defined
 
 - name: Install Ticketmonster App
   hosts: all
