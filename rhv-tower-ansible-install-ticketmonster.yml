@@ -2,7 +2,11 @@
   connection: local
   hosts: all
   gather_facts: no
-  tasks:
+  tasks:  
+    - name: Pause for 5 minutes to finish VM Creation Process.
+      pause:
+      minutes: 5
+    
     - name: Refresh CloudForms VM
       uri:
         url: "{{ cloudforms.href }}"
