@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: no
   tasks:  
-    - name: Pause for 5 minutes to finish VM Creation Process.
+    - name: Pause for 2 minutes to finish VM Creation Process.
       pause:
-        minutes: 5
+        minutes: 2
     
     - name: Refresh CloudForms VM
       uri:
