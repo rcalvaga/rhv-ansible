@@ -1,8 +1,0 @@
-- name: Pause in Minutes
-  connection: local
-  hosts: all
-  gather_facts: no
-  tasks:  
-    - name: Pause for "{{ minutes }}" minutes
-      pause:
-        minutes: "{{ minutes }}"
