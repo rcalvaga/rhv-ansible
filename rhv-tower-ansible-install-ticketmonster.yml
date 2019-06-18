@@ -5,7 +5,7 @@
   tasks:  
     - name: Pause for 5 minutes to finish VM Creation Process.
       pause:
-      minutes: 5
+        minutes: 5
     
     - name: Refresh CloudForms VM
       uri:
