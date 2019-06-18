@@ -22,3 +22,6 @@
 
 - name: Firewalld service state
   service: name=firewalld state=started enabled=yes
+ 
+- name: Put SELinux in permissive mode, logging actions that would be blocked.
+  selinux: policy=targeted state=permissive
