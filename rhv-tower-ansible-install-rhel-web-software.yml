@@ -1,0 +1,19 @@
+- name: Install Software on RHEL VM
+  hosts: all
+  gather_facts: True
+
+  tasks:
+  
+  - name: Clean Yum Metadata
+    command: yum clean all
+    
+  - name: install "{{ websoftware }}"
+    yum:
+      name: "{{ websoftware }}"
+      state: latest
+      
+  - name: start "{{ websoftware }}" Service
+    service:
+      name: "{{ websoftware }}"
+      state: started
+      enabled: yes
