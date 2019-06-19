@@ -1,0 +1,19 @@
+- name: Install DB Software on RHEL VM
+  hosts: all
+  gather_facts: True
+
+  tasks:
+  
+  - name: Clean Yum Metadata
+    command: yum clean all
+    
+  - name: install "{{ dbsoftware }}"
+    yum:
+      name: "{{ dbsoftware }}"
+      state: latest
+      
+  - name: start "{{ dbsoftware }}" Service
+    service:
+      name: "{{ dbsoftware }}"
+      state: started
+      enabled: yes
