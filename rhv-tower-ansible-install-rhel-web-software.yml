@@ -1,3 +1,10 @@
+- name: Install Common dependences on RHEL
+  hosts: all
+  gather_facts: True
+
+  roles:
+    - common
+    
 - name: Install Software on RHEL VM
   hosts: all
   gather_facts: True
