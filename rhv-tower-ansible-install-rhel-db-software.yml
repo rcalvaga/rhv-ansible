@@ -4,7 +4,7 @@
   gather_facts: True
 
   roles:
-    - { common, when: dbsoftware is defined }
-    - { common_lamp, when: dbsoftware == 'mariadb' }
-    - { db, when: dbsoftware == 'mariadb' }  
-    - { ansible-postgresql, when: dbsoftware == 'postgresql' }
+    - { role: common, when: dbsoftware is defined }
+    - { role: common_lamp, when: dbsoftware == 'mariadb' }
+    - { role: db, when: dbsoftware == 'mariadb' }  
+    - { role: ansible-postgresql, when: dbsoftware == 'postgresql' }
