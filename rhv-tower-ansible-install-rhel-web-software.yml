@@ -1,26 +1,12 @@
-- name: Install Common dependences on RHEL
+---
+- name: Install Web Software on RHEL VM
   hosts: all
   gather_facts: True
 
   roles:
     - common
-    
-- name: Install Software on RHEL VM
-  hosts: all
-  gather_facts: True
-
-  tasks:
+    - { common_lamp, when: websoftware == 'httpd' }
+    - { common_wp, when: websoftware == 'nginx' }
+    - { web, when: websoftware == 'httpd' }  
+    - { nginx, when: websoftware == 'nginx' }
   
-  - name: Clean Yum Metadata
-    command: yum clean all
-    
-  - name: install "{{ websoftware }}"
-    yum:
-      name: "{{ websoftware }}"
-      state: latest
-      
-  - name: start "{{ websoftware }}" Service
-    service:
-      name: "{{ websoftware }}"
-      state: started
-      enabled: yes
