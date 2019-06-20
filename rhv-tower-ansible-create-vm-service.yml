@@ -128,7 +128,7 @@
     
     - name: Register vm with the service
       uri:
-        url: "{{ cf_api_uri }}/api/services/{{ service_id }}"
+        url: "{{ cf_api_uri }}/api/services"
         method: POST
         body_format: json
         body:
