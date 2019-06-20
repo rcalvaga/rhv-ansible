@@ -12,7 +12,7 @@
 
     - name: Get CloudForms auth_token
       uri:
-        url: "{{ api_uri }}/api/auth"
+        url: "{{ cf_api_uri }}/api/auth"
         method: GET
         validate_certs: no
         user: "{{ cf_user }}"
@@ -26,7 +26,7 @@
 
     - name: Set the Provider URL
       set_fact:
-        provider_url: "{{ api_uri }}/api/providers/{{ provider_id }}"
+        provider_url: "{{ cf_api_uri }}/api/providers/{{ provider_id }}"
 
     - debug: var=provider_url
 
@@ -96,7 +96,7 @@
       delay: "{{retry_interval}}"
     - debug: var=task_result
     
-    - set_fact: find_vm_url="{{ api_uri }}/api/vms?expand=resources&attributes=href,uid_ems&filter[]=uid_ems='{{ new_vm_uuid }}'"
+    - set_fact: find_vm_url="{{ cf_api_uri }}/api/vms?expand=resources&attributes=href,uid_ems&filter[]=uid_ems='{{ new_vm_uuid }}'"
 
     - debug: var=find_vm_url
 
@@ -128,7 +128,7 @@
     
     - name: Register vm with the service
       uri:
-        url: "{{ api_uri }}/api/services"
+        url: "{{ cf_api_uri }}/api/services/{{ service_id }}"
         method: POST
         body_format: json
         body:
