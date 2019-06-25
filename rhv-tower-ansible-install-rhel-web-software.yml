@@ -4,9 +4,9 @@
   gather_facts: True
 
   roles:
-    - { common, when: websoftware is defined }
-    - { common_lamp, when: websoftware == 'httpd' }
-    - { common_wp, when: websoftware == 'nginx' }
-    - { web, when: websoftware == 'httpd' }  
-    - { nginx, when: websoftware == 'nginx' }
+    - { role: common, when: websoftware is defined }
+    - { role: common_lamp, when: websoftware == 'httpd' }
+    - { role: common_wp, when: websoftware == 'nginx' }
+    - { role: web, when: websoftware == 'httpd' }  
+    - { role: nginx, when: websoftware == 'nginx' }
   
