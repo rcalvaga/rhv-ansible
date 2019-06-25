@@ -9,4 +9,5 @@
     - { role: common_wp, when: websoftware == 'nginx' }
     - { role: web, when: websoftware == 'httpd' }  
     - { role: nginx, when: websoftware == 'nginx' }
+    - { role: nginx_clean, when: websoftware == 'nginx' }
   
