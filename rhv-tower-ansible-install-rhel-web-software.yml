@@ -1,0 +1,13 @@
+---
+- name: Install Web Software on RHEL VM
+  hosts: all
+  gather_facts: True
+
+  roles:
+    - { role: common, when: websoftware is defined }
+    - { role: common_lamp, when: websoftware == 'httpd' }
+    - { role: common_wp, when: websoftware == 'nginx' }
+    - { role: web, when: websoftware == 'httpd' }  
+    - { role: nginx, when: websoftware == 'nginx' }
+    - { role: nginx_clean, when: websoftware == 'nginx' }
+  

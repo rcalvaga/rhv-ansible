@@ -1,0 +1,10 @@
+---
+- name: Install DB Software on RHEL VM
+  hosts: all
+  gather_facts: True
+
+  roles:
+    - { role: common, when: dbsoftware is defined }
+    - { role: common_lamp, when: dbsoftware == 'mariadb' }
+    - { role: db, when: dbsoftware == 'mariadb' }  
+    - { role: ansible-postgresql, when: dbsoftware == 'postgresql' }
